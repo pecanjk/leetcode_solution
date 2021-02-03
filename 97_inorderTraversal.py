@@ -10,10 +10,30 @@ class TreeNode:
 	
 
 def inorderTraversal(root:TreeNode)->list:
-	vis=[]
-	if root:
-		vis+=inorderTraversal(root.left)
-		vis.append(root)
-    vis+=inorderTraversal(root.right)
+	visit=[]
+	inorder(root,visit)
+	return visit
 
-	return vis
+def inorder(node,visit)->list:
+		if not node:
+			return
+
+		inorderTraversal(root.left,visit)
+		visit.append(root)
+    inorderTraversal(root.right,visit)
+
+
+def inorderTravsersal2(root):
+	visit=[]
+	stack=[]
+	while root or len(stack)>0:
+		while root:
+			stack.append(root)
+			root=root.left
+
+		if len(stack)>0:
+			root=stack.pop()
+			visit.append(root.val)
+			root=root.right
+
+	return visit
