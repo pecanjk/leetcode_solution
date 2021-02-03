@@ -7,25 +7,35 @@ nums1 中数字 x 的下一个更大元素是指 x 在 nums2 中对应位置的�
 '''
 def nextGreaterElement(nums1:list,nums2:list)->list:
 	hash_nG=dict()
-	for idx,v in enumerate(nums2):
-		i=idx+1
-		stack=[v]
-		res_idx=-1
-		while i<len(nums2):
-			if nums2[i]<v:
-				stack.append(nums2[i])
-				i+=1
-			else:
-				res_idx=i
-				break
-		if res_idx==-1:
-			hash_nG[v]=res_idx
-		else:
-			hash_nG[v]=nums2[res_idx]
+	stack=[]
+	idx=0
+	while idx<len(nums2):
+		while len(stack)>0 and nums2[idx]>stack[-1]:
+			tmp=stack.pop()
+			hash_nG[tmp]=nums2[idx]
+		
+		if nums2[idx] not in hash_nG:
+			hash_nG[nums2[idx]]=-1
 
+		stack.append(nums2[idx])
+		idx+=1
+	
 	print(hash_nG)
 	result=[hash_nG[v] for v in nums1]
 	return result
+
+
+def nextGreaterElement2(nums1,nums2):
+	hash_nG=dict()
+	stack=[]
+	idx=len(nums2)-1
+	while idx>=0:
+		while len(stack)>0 and nums2[idx]>stack[-1]:
+			stack.pop()
+		
+		hash_nG[nums2[idx]]=stack[-1] if len(stack)>0 else -1
+		stack.append(nums2[idx])
+		idx-=1
 
 
 if __name__=="__main__":
