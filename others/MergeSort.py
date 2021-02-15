@@ -10,12 +10,13 @@ def MergeSub(nums,left,right):
 	if left==right:
 		return 
 
-	mid=(left+right)//2
+	mid=(left+right)//2 #mid=(left+right)>>1
 	MergeSub(nums,left,mid)
 	MergeSub(nums,mid+1,right)
 
 	#merge two ordered array
 	m=MergeSortedArray(nums,left,mid,right)
+	
 	return m
 
 
@@ -31,6 +32,7 @@ def MergeSortedArray(nums,left,mid,right):
 	#Then copy in order to origin nums[left,right+1]
 	while p<len(L)+len(R):
 		if i<len(L) and j<len(R):
+			#if L[i:]<R[j:]: #list compare rather than L[i]<R[j]
 			if L[i]<R[j]:
 				nums[p]=L[i]
 				i+=1
@@ -48,7 +50,8 @@ def MergeSortedArray(nums,left,mid,right):
 		p+=1
 	
 	return nums
-	
+
+
 
 if __name__=="__main__":
 	nums=[4,3,5,2,2,9]
