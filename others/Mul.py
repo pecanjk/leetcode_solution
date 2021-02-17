@@ -28,6 +28,20 @@ def mul2(a,k):
 	return result
 
 
+
+def mul3(a,k):
+	if k==0:
+		return 0
+	if k==1:
+		return a
+	if k==-1:
+		return -a
+	
+	half=mul3(a,k//2)
+	res=mul3(a,k%2)
+	return a+half+res
+
+
 if __name__=="__main__":
 	a=30
 	k=5
