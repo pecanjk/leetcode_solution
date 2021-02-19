@@ -10,7 +10,21 @@ def twoSum(nums:list,target:int)->list:
       j+=1
     i+=1
 
+
+def twoSum2(nums,target):
+	hash_dict=dict()
+	for idx, v in enumerate(nums):
+		pair=target-v
+		if pair in hash_dict:
+			return [hash_dict[pair],idx]
+		else:
+			hash_dict[v]=idx
+
+
 if __name__=="__main__":
-  nums=[2,7,11,15]
-  out=twoSum(nums,9)
-  print(out)
+	nums=[2,7,11,15]
+	out=twoSum(nums,9)
+	print('out',out)
+
+	out=twoSum2(nums,9)
+	print('out2 ',out)
