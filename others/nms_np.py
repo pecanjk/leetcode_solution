@@ -13,7 +13,7 @@ def NMS(dets,threshold):
 	scores=dets[:,4]
 	
 	#areas of every bbox
-	area=(x2-x1)*(y1-y2)
+	area=(x2-x1)*(y2-y1)
 	print('area ',area)
 	#sort the idx rather val
 	order=scores.argsort()[::-1]#::-1 逆序
@@ -32,7 +32,7 @@ def NMS(dets,threshold):
 		
 		#计算相交框的面积,注意矩形框不相交时w或h算出来会是负数，需要用0代替
 		w=np.maximum(0.0,xx2-xx1)
-		h=np.maximum(0.0,yy1-yy2)
+		h=np.maximum(0.0,yy2-yy1)
 		inter=w*h
 		#print('inter ',inter,inter.shape)
 		#iou
